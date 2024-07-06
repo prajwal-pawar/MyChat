@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const JWT_SECRET = "zlHMw1Pyjp4WSYkLCI3a7qSUtCsiNdM75I9/rek3WpQ=";
 
 module.exports.signup = async (req, res) => {
   try {
@@ -42,6 +44,45 @@ module.exports.signup = async (req, res) => {
   }
 };
 
-module.exports.login = (req, res) => {};
+module.exports.login = async (req, res) => {
+  try {
+    // deconstruct req.body
+    const { username, password } = req.body;
+
+    let user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(400).json({ error: "User doesn't exists" });
+    }
+
+    if (!bcrypt.compareSync(password, user.password)) {
+      return res.status(400).json({ error: "Invalid password" });
+    }
+
+    // generate JWT token
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    // return cookie as response
+    return res
+      .cookie("token", token, {
+        maxAge: 60 * 60 * 1000,
+        httpOnly: true,
+        sameSite: "strict",
+        secure: true,
+      })
+      .status(200)
+      .json({
+        _id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        profilePicture: user.profilePicture,
+      });
+  } catch (err) {
+    console.error("Error in user login", err);
+    return res.status(500).json({ error: "User login error" });
+  }
+};
 
 module.exports.logout = (req, res) => {};
