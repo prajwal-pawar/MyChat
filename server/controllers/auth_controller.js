@@ -85,4 +85,21 @@ module.exports.login = async (req, res) => {
   }
 };
 
-module.exports.logout = (req, res) => {};
+module.exports.logout = (_, res) => {
+  try {
+    // clear cookie
+    return res
+      .clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+      })
+      .status(200)
+      .json({
+        message: "User logged out",
+      });
+  } catch (err) {
+    console.error("Error in user logout", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
