@@ -7,6 +7,9 @@ router.get("/", (_, res) => {
   });
 });
 
+// auth routes
 router.use("/auth", require("./auth"));
+// message routes
+router.use("/message", require("./message"));
 
 module.exports = router;
