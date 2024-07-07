@@ -5,7 +5,7 @@ const JWT_SECRET = "zlHMw1Pyjp4WSYkLCI3a7qSUtCsiNdM75I9/rek3WpQ=";
 
 module.exports.signup = async (req, res) => {
   try {
-    // deconstruct req.body
+    // destructure req.body
     const { fullName, username, password, confirmPassword, gender } = req.body;
 
     if (password !== confirmPassword) {
@@ -46,7 +46,7 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
-    // deconstruct req.body
+    // destructure req.body
     const { username, password } = req.body;
 
     let user = await User.findOne({ username });
