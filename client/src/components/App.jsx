@@ -1,9 +1,9 @@
+import SignUp from "../pages/SignUp";
+
 function App() {
   return (
-    <div>
-      <button className="btn">click me</button>
-      <button className="btn btn-neutral">click me</button>
-      <button className="btn btn-primary">click me</button>
+    <div className="p-4 h-screen">
+      <SignUp />
     </div>
   );
 }
