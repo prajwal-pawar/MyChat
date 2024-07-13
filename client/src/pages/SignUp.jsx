@@ -10,41 +10,49 @@ const SignUp = () => {
           <div className="mt-2">
             <label className="input input-bordered flex items-center gap-5">
               Full Name
-              <input type="text" className="grow" placeholder="John Doe" />
+              <input
+                type="text"
+                className="grow text-white"
+                placeholder="John Doe"
+              />
             </label>
           </div>
 
           <div className="mt-2">
             <label className="input input-bordered flex items-center gap-5">
               Username
-              <input type="text" className="grow" placeholder="johndoe" />
+              <input
+                type="text"
+                className="grow text-white"
+                placeholder="johndoe"
+              />
             </label>
           </div>
 
           <div className="mt-2">
             <label className="input input-bordered flex items-center gap-5">
               Password
-              <input type="password" className="grow" />
+              <input type="password" className="grow text-white" />
             </label>
           </div>
 
           <div className="mt-2">
             <label className="input input-bordered flex items-center gap-5">
               Confirm Password
-              <input type="password" className="grow" />
+              <input type="password" className="grow text-white" />
             </label>
           </div>
 
           <div className="flex">
             <div className="form-control">
               <label className="label gap-2 cursor-pointer">
-                <span className="label-text">Male</span>
+                <span className="label-text text-white">Male</span>
                 <input type="checkbox" className="checkbox border-slate-900" />
               </label>
             </div>
             <div className="form-control">
               <label className="label gap-2 cursor-pointer">
-                <span className="label-text">Female</span>
+                <span className="label-text text-white">Female</span>
                 <input type="checkbox" className="checkbox border-slate-900" />
               </label>
             </div>

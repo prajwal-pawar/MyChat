@@ -10,14 +10,14 @@ const Login = () => {
           <div className="mt-2">
             <label className="input input-bordered flex items-center gap-5">
               Username
-              <input type="text" className="grow" />
+              <input type="text" className="grow text-white" />
             </label>
           </div>
 
           <div className="mt-2">
             <label className="input input-bordered flex items-center gap-5">
               Password
-              <input type="password" className="grow" />
+              <input type="password" className="grow text-white" />
             </label>
           </div>
 
