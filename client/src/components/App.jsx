@@ -1,9 +1,9 @@
-import SignUp from "../pages/SignUp";
+import Home from "../pages/Home";
 
 function App() {
   return (
     <div className="p-4 h-screen">
-      <SignUp />
+      <Home />
     </div>
   );
 }
