@@ -2,7 +2,7 @@ import { BiLogOut } from "react-icons/bi";
 
 const LogoutButton = () => {
   return (
-    <div className="mt-auto flex gap-3">
+    <div className="mt-auto flex gap-3 p-3 border-t border-gray-700">
       <BiLogOut className="w-6 h-6 text-white cursor-pointer" />
       Logout
     </div>
