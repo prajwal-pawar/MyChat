@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const db = require("./configs/mongoose");
 
 const app = express();
@@ -11,6 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // cookies
 app.use(cookieParser());
+// allow cors
+app.use(cors());
 // routes
 app.use("/", require("./routes"));
 
