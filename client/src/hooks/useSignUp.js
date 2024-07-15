@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const useSignUp = () => {
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const signUp = async (inputs) => {
     const { fullName, username, password, confirmPassword, gender } = inputs;
@@ -38,6 +41,9 @@ const useSignUp = () => {
       console.log(response.data);
 
       toast.success(response.data.message);
+
+      // redirect to the login
+      navigate("/login");
 
       // if error
       if (response.data.error) {
