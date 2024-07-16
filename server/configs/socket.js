@@ -13,6 +13,11 @@ const io = new Server(server, {
   },
 });
 
+// get socket id from user id
+const getReceiverSocketId = (receiverId) => {
+  return userSocketMap[receiverId];
+};
+
 // userSocketMap has userId as key and socketId as value {userId: socketId}
 const userSocketMap = {}; // for getting online users
 
@@ -41,4 +46,5 @@ module.exports = {
   app,
   io,
   server,
+  getReceiverSocketId,
 };

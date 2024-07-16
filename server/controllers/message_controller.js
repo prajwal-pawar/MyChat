@@ -1,3 +1,4 @@
+const { getReceiverSocketId, io } = require("../configs/socket");
 const Conversation = require("../models/conversation");
 const Message = require("../models/message");
 
@@ -37,6 +38,13 @@ module.exports.sendMessage = async (req, res) => {
 
     // this will run asynchronously
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+
+    if (receiverSocketId) {
+      // io.to(socket_id).emit() used to send events to specific client, not all users
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     return res.status(201).json({ newMessage });
   } catch (err) {
