@@ -1,21 +1,35 @@
-const Conversation = () => {
+import useConversation from "../store/useConversation";
+
+const Conversation = ({ conversation, lastIndex }) => {
+  // zustand store
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  // if selected conversation id is equal to current conversation id
+  const selected = selectedConversation?._id === conversation._id;
+
   return (
     <>
-      <div className="flex gap-2 items-center hover:bg-sky-600 rounded-sm p-2 py-2 cursor-pointer">
+      <div
+        className={`flex gap-2 items-center hover:bg-sky-600 rounded-sm p-2 py-2 cursor-pointer ${
+          selected ? "bg-sky-700" : ""
+        }`}
+        onClick={() => setSelectedConversation(conversation)}
+      >
         <div className="avatar online">
           <div className="w-12 rounded-full">
-            <img src="https://avatar.iran.liara.run/public" alt="user avatar" />
+            <img src={conversation.profilePicture} alt="user avatar" />
           </div>
         </div>
 
         <div className="flex flex-col flex-1">
           <div className="flex gap-3 justify-between">
-            <p className="font-bold text-gray-200">John Doe</p>
+            <p className="font-bold text-gray-200">{conversation.fullName}</p>
           </div>
         </div>
       </div>
 
-      <div className="divider my-1 py-0 h-1" />
+      {/* if not last index, then show divider */}
+      {!lastIndex && <div className="divider my-1 py-0 h-1" />}
     </>
   );
 };

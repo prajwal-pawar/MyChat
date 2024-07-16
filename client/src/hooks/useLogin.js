@@ -19,10 +19,14 @@ const useLogin = () => {
       }
 
       // hit login api endpoint
-      const response = await axios.post("http://localhost:8000/auth/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:8000/auth/login",
+        {
+          username,
+          password,
+        },
+        { withCredentials: true } // send cookies
+      );
 
       console.log(response.data);
 
