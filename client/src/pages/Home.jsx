@@ -3,7 +3,7 @@ import MessageContainer from "../components/MessageContainer";
 
 const Home = () => {
   return (
-    <div className="flex max-h-screen">
+    <div className="flex h-screen max-h-screen">
       <Sidebar />
       <MessageContainer />
     </div>
