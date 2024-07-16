@@ -12,8 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // cookies
 app.use(cookieParser());
-// allow cors
-app.use(cors());
+// allow cors and set origin and credentials for cookies
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 // routes
 app.use("/", require("./routes"));
 
