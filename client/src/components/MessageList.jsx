@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 import Message from "./Message";
 import useFetchMessages from "../hooks/useFetchMessages";
+import useListenMessages from "../hooks/useListenMessages";
 
 const MessageList = () => {
   // fetch messages hook
   const { loading, messages } = useFetchMessages();
 
   const lastMessageRef = useRef();
+
+  // listens for new messages
+  useListenMessages();
 
   // scroll view to last message
   useEffect(() => {
