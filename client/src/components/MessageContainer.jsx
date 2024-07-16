@@ -3,10 +3,13 @@ import { TiMessage } from "react-icons/ti";
 import MessageInput from "./MessageInput";
 import MessageList from "./MessageList";
 import useConversation from "../store/useConversation";
+import useAuth from "../hooks/useAuth";
 
 const MessageContainer = () => {
   // zustand store
   const { selectedConversation, setSelectedConversation } = useConversation();
+  // auth hook
+  const { authUser } = useAuth();
 
   useEffect(() => {
     // unmount/cleanup setSelectedConversation when component unmounts
@@ -19,7 +22,8 @@ const MessageContainer = () => {
         <div className="flex items-center justify-center w-full h-full">
           <div className="px-4 text-center text-lg text-gray-200 font-semibold flex flex-col items-center gap-2">
             <p>
-              Welcome to MyChat <span className="text-blue-500">John Doe</span>.
+              Welcome to MyChat{" "}
+              <span className="text-blue-500">{authUser.fullName}</span>.
             </p>
             <p>Select a chat to start a conversation.</p>
             <TiMessage className="text-3xl text-center" />

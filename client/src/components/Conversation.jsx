@@ -1,11 +1,16 @@
+import useSocket from "../hooks/useSocket";
 import useConversation from "../store/useConversation";
 
 const Conversation = ({ conversation, lastIndex }) => {
   // zustand store
   const { selectedConversation, setSelectedConversation } = useConversation();
+  // socket hook
+  const { onlineUsers } = useSocket();
 
   // if selected conversation id is equal to current conversation id
   const selected = selectedConversation?._id === conversation._id;
+
+  const isUserOnline = onlineUsers.includes(conversation._id);
 
   return (
     <>
@@ -15,7 +20,7 @@ const Conversation = ({ conversation, lastIndex }) => {
         }`}
         onClick={() => setSelectedConversation(conversation)}
       >
-        <div className="avatar online">
+        <div className={`avatar ${isUserOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img src={conversation.profilePicture} alt="user avatar" />
           </div>
