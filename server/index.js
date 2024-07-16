@@ -2,8 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const db = require("./configs/mongoose");
-
-const app = express();
+const { app, server } = require("./configs/socket");
 
 const PORT = 8000;
 
@@ -17,6 +16,6 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 // routes
 app.use("/", require("./routes"));
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
